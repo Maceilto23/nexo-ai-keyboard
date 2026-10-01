@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07121f">
+  <meta name="description" content="Nexo AI Keyboard — teclado inteligente para Android com IA sob comando do usuário.">
+  <title>Nexo AI Keyboard</title>
+  <link rel="icon" href="assets/nexo-ai.png">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Nexo AI Keyboard">
+      <img src="assets/nexo-ai.png" alt="Nexo AI">
+      <span>NEXO <b>AI</b></span>
+    </a>
+    <nav>
+      <a href="#recursos">Recursos</a>
+      <a href="#arquitetura">Arquitetura</a>
+      <a href="privacy.html">Privacidade</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="pill">Nexo AI Keyboard 3.1</div>
+        <h1>Seu teclado.<br><span>Só que inteligente.</span></h1>
+        <p>Escreva, responda, corrija, organize, resuma e adapte o tom sem sair do aplicativo que você está usando.</p>
+        <div class="actions">
+          <a class="btn primary" href="#instalacao">Como instalar</a>
+          <a class="btn" href="privacy.html">Como seus textos são tratados</a>
+        </div>
+        <div class="status-card" aria-live="polite">
+          <span class="status-dot" id="statusDot"></span>
+          <div>
+            <strong id="statusTitle">Verificando a inteligência…</strong>
+            <small id="statusText">API separada do site por segurança.</small>
+          </div>
+        </div>
+      </div>
+      <div class="visual">
+        <div class="halo"></div>
+        <img src="assets/nexo-ai.png" alt="Assistente Nexo AI">
+        <div class="floating-card c1">✨ Otimizar</div>
+        <div class="floating-card c2">💼 Profissional</div>
+        <div class="floating-card c3">↩ Responder</div>
+        <div class="floating-card c4">✓ Corrigir</div>
+      </div>
+    </section>
+
+    <section id="recursos" class="section">
+      <div class="section-heading">
+        <span>RECURSOS</span>
+        <h2>IA onde você já escreve.</h2>
+      </div>
+      <div class="grid">
+        <article><b>Resposta inteligente</b><p>Copie uma mensagem recebida, abra um campo vazio e use Responder para criar a resposta.</p></article>
+        <article><b>Reescrita instantânea</b><p>Otimizar, Profissional, Direto, Educado, Firme, Natural e outros modos.</p></article>
+        <article><b>Minha Cara</b><p>Defina seu estilo pessoal para a IA escrever de forma mais próxima ao seu jeito.</p></article>
+        <article><b>Atalhos próprios</b><p>Crie comandos personalizados que aparecem diretamente na barra do teclado.</p></article>
+        <article><b>Desfazer</b><p>Depois de uma transformação, restaure o texto anterior com um toque.</p></article>
+        <article><b>Privacidade por ação</b><p>O texto só é enviado à IA quando você escolhe uma ação. Campos de senha bloqueiam a IA.</p></article>
+      </div>
+    </section>
+
+    <section id="arquitetura" class="section split">
+      <div>
+        <div class="section-heading">
+          <span>ARQUITETURA</span>
+          <h2>Separado do jeito certo.</h2>
+        </div>
+        <p class="lead">O site público fica no InfinityFree. O processamento de IA fica em um backend independente no Render. A chave OpenAI nunca precisa estar no APK nem neste domínio.</p>
+      </div>
+      <div class="flow">
+        <div>📱 <strong>Nexo AI Keyboard</strong><small>Android</small></div>
+        <i>→</i>
+        <div>🛡️ <strong>Backend privado</strong><small>Render</small></div>
+        <i>→</i>
+        <div>🧠 <strong>OpenAI</strong><small>Responses API</small></div>
+      </div>
+    </section>
+
+    <section id="instalacao" class="section install">
+      <div class="section-heading">
+        <span>INSTALAÇÃO</span>
+        <h2>Três passos para usar.</h2>
+      </div>
+      <div class="steps">
+        <div><em>1</em><b>Instale o APK</b><p>Instale a versão compilada do Nexo AI Keyboard.</p></div>
+        <div><em>2</em><b>Ative o teclado</b><p>Abra o app e toque em “Ativar teclado no Android”.</p></div>
+        <div><em>3</em><b>Conecte a IA</b><p>Informe o APP_TOKEN do seu backend e teste a conexão.</p></div>
+      </div>
+      <p class="note">O endereço oficial deste portal é <strong>nexo-keyboard.page.gd</strong>. Este site não armazena sua chave da OpenAI.</p>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 Nexo AI Keyboard</span>
+    <a href="privacy.html">Privacidade</a>
+  </footer>
+  <script src="assets/config.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
