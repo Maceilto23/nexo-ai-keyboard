@@ -1,0 +1,15 @@
+<resources>
+    <style name="Theme.NexoAI" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">#07121F</item>
+        <item name="android:statusBarColor">#07121F</item>
+        <item name="android:colorAccent">#22D3EE</item>
+        <item name="android:windowBackground">#07121F</item>
+    </style>
+    <style name="Theme.NexoAI.Dialog" parent="android:style/Theme.Material.Dialog.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:colorAccent">#22D3EE</item>
+        <item name="android:windowBackground">#0B1726</item>
+    </style>
+</resources>
