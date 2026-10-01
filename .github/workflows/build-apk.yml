@@ -1,8 +1,24 @@
-                echo "AVISO: recurso possivelmente inválido: $file"
-                ;;
-            esac
-          done < <(find "$RES" -type f | sort)
+                rm -f "$SRC"
+              else
+                echo "Renomeando $SRC -> $DST"
+                mv "$SRC" "$DST"
+              fi
+            fi
+          }
 
+          fix "$RES/values/strings" "$RES/values/strings.xml"
+          fix "$RES/xml/method" "$RES/xml/method.xml"
+
+          for d in mipmap-mdpi mipmap-hdpi mipmap-xhdpi mipmap-xxhdpi mipmap-xxxhdpi; do
+            fix "$RES/$d/ic_launcher" "$RES/$d/ic_launcher.png"
+          done
+
+          echo ""
+          echo "=== Recursos Android após correção ==="
+          find "$RES" -type f | sort
+
+          echo ""
+          echo "=== Verificação obrigatória ==="
           test -f "$RES/values/strings.xml"
           test -f "$RES/xml/method.xml"
           test -f "$RES/mipmap-mdpi/ic_launcher.png"
@@ -12,7 +28,7 @@
           test -f "$RES/mipmap-xxxhdpi/ic_launcher.png"
 
       - name: Configurar Java 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
@@ -32,10 +48,15 @@
         working-directory: android
         run: gradle clean assembleDebug --stacktrace --no-daemon
 
+      - name: Confirmar APK gerado
+        run: |
+          test -f android/app/build/outputs/apk/debug/app-debug.apk
+          ls -lh android/app/build/outputs/apk/debug/app-debug.apk
+
       - name: Publicar APK
         uses: actions/upload-artifact@v4
         with:
-          name: NexoAI-Keyboard-APK-v3.2
+          name: NexoAI-Keyboard-APK-v3.2-CORRIGIDO
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
