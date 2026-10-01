@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: nexo-keyboard-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./server/Dockerfile
+    dockerContext: ./server
+    autoDeploy: true
+    healthCheckPath: /api.php
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: APP_TOKEN
+        sync: false
+      - key: OPENAI_MODEL_FAST
+        value: gpt-5.6-luna
+      - key: OPENAI_MODEL_BALANCED
+        value: gpt-5.6-terra
+      - key: OPENAI_MODEL_SMART
+        value: gpt-5.6-sol
+      - key: MAX_CHARS
+        value: "12000"
+      - key: ALLOWED_ORIGIN
+        value: https://nexo-keyboard.page.gd
+      - key: PUBLIC_SITE_URL
+        value: https://nexo-keyboard.page.gd

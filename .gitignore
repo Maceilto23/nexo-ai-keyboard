@@ -1,0 +1,15 @@
+*.iml
+.gradle/
+local.properties
+.idea/
+.DS_Store
+build/
+**/build/
+*.jks
+*.keystore
+.env
+.env.*
+server/config.local.php
+htdocs/config.local.php
+*.apk
+*.aab
