@@ -1,0 +1,3 @@
+-keep class com.nexoai.keyboard.NexoKeyboardService { *; }
+-keep class com.nexoai.keyboard.ProcessTextActivity { *; }
+-keep class com.nexoai.keyboard.OverlayService { *; }
