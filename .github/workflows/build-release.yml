@@ -1,0 +1,41 @@
+name: Build Nexo AI Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.13'
+      - name: Check signing secrets
+        shell: bash
+        run: |
+          test -n "${{ secrets.NEXO_KEYSTORE_BASE64 }}" || (echo "NEXO_KEYSTORE_BASE64 não configurado" && exit 1)
+          test -n "${{ secrets.NEXO_KEYSTORE_PASSWORD }}" || (echo "NEXO_KEYSTORE_PASSWORD não configurado" && exit 1)
+          test -n "${{ secrets.NEXO_KEY_ALIAS }}" || (echo "NEXO_KEY_ALIAS não configurado" && exit 1)
+          test -n "${{ secrets.NEXO_KEY_PASSWORD }}" || (echo "NEXO_KEY_PASSWORD não configurado" && exit 1)
+      - name: Restore signing keystore
+        run: echo "${{ secrets.NEXO_KEYSTORE_BASE64 }}" | base64 --decode > android/nexo-release.jks
+      - name: Build signed APK and AAB
+        working-directory: android
+        env:
+          NEXO_KEYSTORE_PATH: ${{ github.workspace }}/android/nexo-release.jks
+          NEXO_KEYSTORE_PASSWORD: ${{ secrets.NEXO_KEYSTORE_PASSWORD }}
+          NEXO_KEY_ALIAS: ${{ secrets.NEXO_KEY_ALIAS }}
+          NEXO_KEY_PASSWORD: ${{ secrets.NEXO_KEY_PASSWORD }}
+        run: gradle assembleRelease bundleRelease --stacktrace
+      - uses: actions/upload-artifact@v4
+        with:
+          name: NexoAI-Keyboard-release
+          path: |
+            android/app/build/outputs/apk/release/app-release.apk
+            android/app/build/outputs/bundle/release/app-release.aab
+          if-no-files-found: error
